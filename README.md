@@ -60,6 +60,10 @@ example, to do so in a minimal CentOS7 container try this:
 
 ```
 docker run -it -v $HOME/rpmbuild:/rpmbuild centos:7
+# NOTE: at this point you might need to paste some environment
+# variables settings into your docker container, for exmaple if
+# you use a nework proxy you will want to paste all those environment
+# variables before you start the yum install commands
 yum install -y epel-release
 yum install -y yum-utils
 cd /rpmbuild/SRPMS/

@@ -42,13 +42,14 @@ Clone the repo with:
 
 ```
 git clone https://github.com/markgalassi/try_conda_rpm.git
+cd try_conda_rpm
 ```
 
 
 You can make the source RPM on any machine (even debian) with:
 
 ```
-./make-tarball.sh && rpmbuild -ts make-tarball.sh
+./make-tarball.sh && rpmbuild -ts try_conda_rpm-VERSION.tar.gz
 ```
 
 This will put the source RPM at a place like

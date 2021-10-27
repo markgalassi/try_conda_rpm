@@ -8,6 +8,18 @@ URL: http://www.galassi.org/mark/
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%global _python_bytecompile_extra 0
+%define debug_package %{nil}
+# Turn off the brp-python-bytecompile script
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
+%undefine _missing_build_ids_terminate_build
+
+BuildRequires: epel-release
+BuildRequires: rpm-build
+BuildRequires: yum-utils
+BuildRequires: rsync
+Requires: python3
+
 %description
 an attempt at putting full conda downloads in an rpm
 
@@ -21,6 +33,11 @@ an attempt at putting full conda downloads in an rpm
 rm -rf $RPM_BUILD_ROOT
 mkdir -p ${RPM_BUILD_ROOT}/usr/bin/
 cp make_map_under_conda.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
+cp try_conda_rpm_env_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
+cp try_conda_rpm_conda_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
+mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}
+rsync -avz --delete /opt/%{name}/ $RPM_BUILD_ROOT/opt/%{name}
+#/bin/rm -rf /opt/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -30,6 +47,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc README.md
 /usr/bin/*
+/opt/%{name}/*
 
 
 %changelog

@@ -41,7 +41,7 @@ mess that is python package delivery.
 Clone the repo with:
 
 ```
-https://github.com/markgalassi/try_conda_rpm.git
+git clone https://github.com/markgalassi/try_conda_rpm.git
 ```
 
 

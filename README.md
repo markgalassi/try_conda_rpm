@@ -1,6 +1,6 @@
 # try_conda_rpm
 
-## why?
+## Why?
 
 I need to be able to write python programs that I give to people as
 part of an RPM installation, where they will not have to do all the
@@ -15,7 +15,7 @@ cartopy is cool, but it does bring in the whole kitchen sink
 (including compiled code).  Getting cartopy going is usually rather
 intrusive on a non-python-person to install it properly.
 
-## how did i do it?
+## How did i do it?
 
 I prepared a set of shell scripts which install and run a program in a
 conda environment, but keep the existence of conda's whole formalism
@@ -82,7 +82,7 @@ The idea is that the program `simple_map_trick.py` got executed by the
 shell script `simple_map_trick_wrap`.  This wrapper took care of all
 the conda junk.
 
-## saving that RPM off of the container
+## Saving that RPM off of the container
 
 Remember that once you are done with the container, that binary RPM
 file you created will vaporize, so you can save it off.  If you are

@@ -23,4 +23,5 @@ unset __conda_setup
 
 conda activate /tmp/try_conda_rpm
 
-./simple_map_trick.py
+bindir=`dirname $0`
+${bindir}/simple_map_trick.py

@@ -36,7 +36,7 @@ cp make_map_under_conda.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_env_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_conda_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}
-rsync -avz --delete /opt/%{name}/ $RPM_BUILD_ROOT/opt/%{name}
+rsync -avz --delete --exclude conda_base/pkgs /opt/%{name}/ $RPM_BUILD_ROOT/opt/%{name}
 #/bin/rm -rf /opt/%{name}
 
 %clean

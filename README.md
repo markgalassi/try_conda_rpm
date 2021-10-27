@@ -81,3 +81,14 @@ host to see if it has a simple map of the world.
 The idea is that the program `simple_map_trick.py` got executed by the
 shell script `simple_map_trick_wrap`.  This wrapper took care of all
 the conda junk.
+
+## saving that RPM off of the container
+
+Remember that once you are done with the container, that binary RPM
+file you created will vaporize, so you can save it off.  If you are
+using a container, and if you used the path I gave, you can just save
+it into the rpmbuild directory which you mapped with something like:
+
+```
+cp /root/rpmbuild/RPMS/x86_64/try_conda_rpm-0.1.0-1.x86_64.rpm /rpmbuild/RPMS/x86_64/
+```

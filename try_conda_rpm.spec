@@ -13,6 +13,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Turn off the brp-python-bytecompile script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 %undefine _missing_build_ids_terminate_build
+# turn off scanning many areas for "requires" and "provides"; based on
+# info at
+# https://docs.fedoraproject.org/en-US/packaging-guidelines/AutoProvidesAndRequiresFiltering/
+%global __provides_exclude_from ^/opt/.*$
+%global __requires_exclude_from ^/opt/.*$
+%global __provides_exclude ^.*$
+%global __requires_exclude ^.*$
 
 BuildRequires: epel-release
 BuildRequires: rpm-build
@@ -32,7 +39,7 @@ an attempt at putting full conda downloads in an rpm
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p ${RPM_BUILD_ROOT}/usr/bin/
-cp make_map_under_conda.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
+cp simple_map_trick_wrap ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_env_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_conda_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}

@@ -29,12 +29,12 @@ yum install -y /root/rpmbuild/RPMS/x86_64/try_conda_rpm-0.1.0-1.x86_64.rpm
 Then you can try it out with:
 
 ```
-make_map_under_conda.sh
+simple_map_trick_wrap
 ```
 
 Then you can examine the file `$HOME/rpmbuild/SRPMS/dude.png` from the
 host to see if it has a simple map of the world.
 
-The idea is that the program `simple_map_trick.py` go executed by the
-shell script `make_map_under_conda.sh` which took care of all the
-conda junk.
+The idea is that the program `simple_map_trick.py` got executed by the
+shell script `simple_map_trick_wrap`.  This wrapper took care of all
+the conda junk.

@@ -1,11 +1,19 @@
 #! /usr/bin/env python3
 
-import cartopy.crs as crs
-import cartopy.feature as cfeature
-import matplotlib.pyplot as plt
-# import cartopy.crs as ccrs                   # import projections
-# import cartopy.feature as cf                 # import features
-# import matplotlib.plot as plt
+import sys
+try:
+    import cartopy.crs as crs
+    import cartopy.feature as cfeature
+    import matplotlib.pyplot as plt
+except:
+    print('**error** -- could not import cartopy and/or matplotlib')
+    print('you should be able to run:')
+    wrapper_command_line = sys.argv[0].replace('.py', '_wrap')
+    if len(sys.argv) > 1:
+        wrapper_command_line += ' '
+    wrapper_command_line += ' '.join(sys.argv[1:])
+    print(f'{wrapper_command_line}')
+    sys.exit(1)
 
 def main():
     ax = plt.axes(projection = crs.Mercator())  # create a set of axes with Mercator projection

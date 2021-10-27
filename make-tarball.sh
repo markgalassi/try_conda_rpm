@@ -9,7 +9,7 @@ VERSION=${MAJOR}.${MINOR}.${PATCH}${SUFFIX}
 SERIES=${MAJOR}.${MINOR}
 DISTDIR=${PACKAGE}-${VERSION}
 DIST_FILE_LIST="${PACKAGE}.spec make-tarball.sh README.md \
-              install_conda_stuff.sh make_map_under_conda.sh \
+              install_conda_stuff.sh simple_map_trick_wrap \
               try_conda_rpm_conda_snippet.sh \
               try_conda_rpm_env_snippet.sh \
               simple_map_trick.py try_conda_rpm.spec"

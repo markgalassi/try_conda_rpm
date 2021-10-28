@@ -38,6 +38,8 @@ mess that is python package delivery.
 
 ## How to set this up:
 
+### Clone repo and make source tarball and RPM.
+
 Clone the repo with:
 
 ```
@@ -49,14 +51,21 @@ cd try_conda_rpm
 You can make the source RPM on any machine (even debian) with:
 
 ```
-./make-tarball.sh && rpmbuild -ts try_conda_rpm-VERSION.tar.gz
+./make-tarball.sh
+rpmbuild -ts try_conda_rpm-VERSION.tar.gz
 ```
 
 This will put the source RPM at a place like
 `$HOME/rpmbuild/SRPMS/try_conda_rpm-0.1.0-1.src.rpm`
 
-Then you can build it into an RPM on any RPM based system.  For
-example, to do so in a minimal CentOS7 container try this:
+### Make the binary RPM
+
+Then you can build it into an RPM on any RPM based system -- well, at
+this time (2021-10-28) you need to be root to build the RPM, but
+that's OK for a container setup.
+
+So as an example, to make the binary RPM in a minimal CentOS7 docker
+container, try this:
 
 ```
 docker run -it -v $HOME/rpmbuild:/rpmbuild centos:7

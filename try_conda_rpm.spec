@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # turn off scanning many areas for "requires" and "provides"; based on
 # info at
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/AutoProvidesAndRequiresFiltering/
-%global __provides_exclude_from ^/opt/.*$
-%global __requires_exclude_from ^/opt/.*$
+%global __provides_exclude_from ^$RPM_BUILD_ROOT/opt/.*$
+%global __requires_exclude_from ^$RPM_BUILD_ROOT/opt/.*$
 %global __provides_exclude ^.*$
 %global __requires_exclude ^.*$
 
@@ -34,17 +34,20 @@ an attempt at putting full conda downloads in an rpm
 %setup -q
 
 %build
-./install_conda_stuff.sh
+DESTDIR=`pwd`/ ./install_conda_stuff.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}
+cp --archive conda_base.tar.gz ${RPM_BUILD_ROOT}/opt/%{name}/
+cp --archive conda_deploy.tar.gz ${RPM_BUILD_ROOT}/opt/%{name}/
 mkdir -p ${RPM_BUILD_ROOT}/usr/bin/
 cp simple_map_trick_wrap ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_env_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
 cp try_conda_rpm_conda_snippet.sh simple_map_trick.py ${RPM_BUILD_ROOT}/usr/bin/
-mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}
-rsync -avz --delete --exclude conda_base/pkgs /opt/%{name}/ $RPM_BUILD_ROOT/opt/%{name}
-#/bin/rm -rf /opt/%{name}
+#mkdir -p ${RPM_BUILD_ROOT}/opt/%{name}
+#rsync -avz --delete --exclude conda_base/pkgs /opt/%{name}/ $RPM_BUILD_ROOT/opt/%{name}
+##/bin/rm -rf /opt/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT

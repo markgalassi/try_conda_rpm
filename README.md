@@ -1,5 +1,17 @@
 # try_conda_rpm
 
+The joy shown here:
+
+https://xkcd.com/353/
+
+often then becomes this:
+
+https://xkcd.com/1987/
+
+when you start dealing with python packaging.
+
+Here is one attempt I made at handling one python packaging situation.
+
 ## Why?
 
 I need to be able to write python programs that I give to people as
@@ -13,7 +25,7 @@ cartopy.
 
 cartopy is cool, but it does bring in the whole kitchen sink
 (including compiled code).  Getting cartopy going is usually rather
-intrusive on a non-python-person to install it properly.
+intrusive for a non-python-person trying to install it properly.
 
 ## How did i do it?
 
